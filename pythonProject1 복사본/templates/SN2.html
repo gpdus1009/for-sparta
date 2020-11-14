@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div style="text-align : center;">
+            <img src="{{ url_for('static', filename='SN2.png') }}" usemap="#enter" >
+            <map name="enter" id="enter" onclick="test()">
+                <script>
+                    function test() {
+                        let y = event.offsetY
+                        let type = ""
+                        if(y>461 && y<577){
+                            type="S"
+                        } else {
+                            type = "N"
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/SN2",
+                            data: {title_give: type},
+                            success: function (response) {
+                                console.log(response)
+                            }
+                        })
+                    }
+                </script>
+                <area shape="rect" coords="70,461,482,577" href="SN3">
+                <area shape="rect" coords="70,640,482,760" href="SN3">
+            </map>
+        </div>
+    </body>
+</html>

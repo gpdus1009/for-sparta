@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div style="text-align : center;">
+            <img src="{{ url_for('static', filename='JP3.png') }}" usemap="#enter" >
+            <map name="enter" id="enter" onclick="test()">
+                <script>
+                    function test() {
+                        let y = event.offsetY
+                        let type = ""
+
+                        if(y>430 && y<580){
+                            type="P"
+                        } else {
+                            type = "J"
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/JP3",
+                            data: {title_give: type},
+                            success: function (response) {
+                                console.log(response)
+                            }
+                        })
+                    }
+
+                </script>
+
+                <area shape="rect" coords="60,430,475,580" href="showresult">
+                <area shape="rect" coords="60,624,475,770" href="showresult">
+
+            </map>
+        </div>
+    </body>
+</html>
